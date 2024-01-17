@@ -17,7 +17,7 @@ const Login=()=> {
 
   return (
     <div className='pt-[8vh]'>
-        <div className='max-w-[800px] m-auto px-4 py-16'>
+        <div className='max-w-[800px] m-auto px-4 py-16 drop-shadow-lg'>
             <div className='dark:bg-[#e8edea] px-10 py-8 rounded-lg text-black'>
                 <h1 className='text-2xl font-bold text-gray-800'>Login Account</h1>
                 <form>
@@ -56,12 +56,7 @@ const Login=()=> {
 
                 <hr className='my-6 border-gray-300 w-full'/>
 
-                <button className='w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold
-                 rounded-lg px-4 py-3 border border-gray-300'>
-                    <div className='flex items-center justify-center'>
-                 <FcGoogle className='w-7 h-7'/><span className='ml-4'>Log in with Google</span>
-                 </div>
-                 </button>
+                C
 
                  <p className='my-4'>Don't have an account? <Link className='text-[#986c55] underline' to='/register'>Signup</Link></p>
         </div>
