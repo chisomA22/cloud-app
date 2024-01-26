@@ -9,7 +9,7 @@ import Platform from './Pages/Platform'
 import Contact from './Pages/Contact'
 import Register from './Pages/Register'
 import Support from './Pages/Support'
-import Footer from './Components/footer'
+import Footer from './Components/Footer'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 
 const App = () =>{
