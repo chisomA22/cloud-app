@@ -6,9 +6,10 @@ import About from './Pages/About'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
 import Platform from './Pages/Platform'
-import Pricing from './Pages/Pricing'
+import Contact from './Pages/Contact'
 import Register from './Pages/Register'
 import Support from './Pages/Support'
+import Footer from './Components/footer'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 
 const App = () =>{
@@ -20,10 +21,11 @@ const App = () =>{
             <Route path='/about' element={<About/>}/>
             <Route path='/support' element={<Support/>}/>
             <Route path='/platform' element={<Platform/>}/>
-            <Route path='/pricing' element={<Pricing/>}/>
+            <Route path='/contact' element={<Contact/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
           </Routes>
+          <Footer/>
        </Router>
     
       

@@ -22,7 +22,7 @@ const  Navbar = ()=> {
       <div className='px-2 flex justify-between items-center w-full h-full'>
         <div className='flex items-center'>
           <Link to={'/'}>
-          <h1 className='text-4xl font-bold mr-4 sm:text-3xl flex'>
+          <h1 className='text-4xl font-bold mr-4 sm:text-3xl flex '>
        <img src={logo} className='w-8 mr-2'  alt="img logo" />cloud</h1>
        </Link>
 
@@ -31,7 +31,7 @@ const  Navbar = ()=> {
           <Link to={'/about'}><li>About</li></Link>
           <Link to={'/support'}><li>Support</li></Link> 
           <Link to={'/platform'}><li>Platform</li></Link> 
-          <Link to={'/pricing'}><li>Pricing</li></Link>
+          <Link to={'/contact'}><li>Contact</li></Link>
           </ul>
         </div>
         <div className='hidden md:flex pr-4'>
@@ -47,7 +47,7 @@ const  Navbar = ()=> {
       <Link to={'/about'}><li className='border-b-2 py-3 border-black-300 w-full'>About</li></Link>
       <Link to={'/support'}><li className='border-b-2 py-3 border-black-300 w-full'>Support</li></Link> 
       <Link to={'/platform'}><li className='border-b-2 py-3 border-black-300 w-full'>Platform</li></Link>
-      <Link to={'/pricing'}><li className='border-b-2 py-3 border-black-300 w-full'>Pricing</li></Link>
+      <Link to={'/contact'}><li className='border-b-2 py-3 border-black-300 w-full'>Contact </li></Link>
 
         <div className='flex flex-col my-4'>
         <button className='border-none bg-[#201f1f] text-[#eedfdf] px-8 py-3 mb-4 rounded-2xl'>Login</button>
