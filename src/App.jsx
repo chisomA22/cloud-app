@@ -1,4 +1,5 @@
 
+import { useState,useEffect } from 'react'
 import './App.css'
 import React from 'react'
 import Navbar from './Components/Navbar'
@@ -12,7 +13,26 @@ import Support from './Pages/Support'
 import Footer from './Components/Footer'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 
+import "react-toastify/dist/ReactToastify.css"
+import { ToastContainer } from 'react-toastify'
+import { auth } from './Firebase/Firebaseconfig'
+
 const App = () =>{
+  const [user,setUser] = useState(null);
+  const [isAuth,setisAuth] = useState(localStorage.getItem('isAuthorised'));
+
+
+  useEffect(()=>{
+    auth.onAuthStateChanged(()=>{
+      if (authUser){
+        setUser(authUser);
+      }else{
+        setUser(null)
+      }
+    })
+  },[user]);
+
+
   return (
        <Router>
           <Navbar/>
@@ -23,7 +43,7 @@ const App = () =>{
             <Route path='/platform' element={<Platform/>}/>
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/>
+            <Route path='/register' element={<Register setisAuth={setisAuth} />}/>
           </Routes>
           <Footer/>
        </Router>

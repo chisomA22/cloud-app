@@ -1,12 +1,31 @@
+import { useState } from 'react'
 import React from 'react'
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import { auth,provider } from '../Firebase/Firebaseconfig';
+import { signInWithPopup } from 'firebase/auth';
+import { toast } from 'react-toastify'
+import { createUserWithEmailAndPassword,updateProfile } from 'firebase/auth';
 import {AiOutlineMail, AiFillEyeInvisible, AiFillEye}from 'react-icons/ai'
-import { useState } from 'react'
 
 
 
-const Register=()=> {
+const initialState ={
+    name: '',
+    email: '',
+    password:'',
+    password2:''
+}
+
+
+const Register=({setiAuth})=> {
+
+    const [formValue,setFormValue] = useState(initialState);
+    const {name,email,password,password2} = formValue;
+
+    const onInputChangen = (e)=>{
+        setFormValue({...formValue, [e.target.name]:e.target.value})
+    }
 
     const [passwordEye, setPasswordEye] = useState(false);
     const [PasswordEye, setpasswordEye] = useState(false)
@@ -35,7 +54,7 @@ const Register=()=> {
                                 <input 
                                 className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                                  type="name"
-                                 placeholder='Enter username' name='name' />
+                                 placeholder='Enter username' name='name' value={name} onChange={onInputChangen} />
                                  
                             </div>
                         </div>
@@ -47,7 +66,7 @@ const Register=()=> {
                                 <input 
                                 className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                                  type="email"
-                                 placeholder='Enter Email Address' name='email' />
+                                 placeholder='Enter Email Address' name='email' value={email} onChange={onInputChangen} />
                                  <AiOutlineMail className='absolute right-2 top-3 text-gray-400'/>
                             </div>
                         </div>
@@ -58,7 +77,7 @@ const Register=()=> {
                                 <input 
                                 className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                                 type={(passwordEye === false)? 'password' : 'text'}
-                                placeholder='Enter password' name='password' />
+                                placeholder='Enter password' name='password' value={password} onChange={onInputChangen} />
 
                                 <div className='absolute right-2 top-3'>
                                     {(passwordEye === false)? <AiFillEyeInvisible onClick={handlepasswordEye}
@@ -73,7 +92,7 @@ const Register=()=> {
                                 <input 
                                 className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                                 type={(PasswordEye === false)? 'password' : 'text'}
-                                placeholder='Enter cornfirm password' name='password' />
+                                placeholder='Enter cornfirm password' name='password2' value={password2} onChange={onInputChangen} />
 
                                 <div className='absolute right-2 top-3'>
                                     {(PasswordEye === false)? <AiFillEyeInvisible onClick={handlePasswordEye}

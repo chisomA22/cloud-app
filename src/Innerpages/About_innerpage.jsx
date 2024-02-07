@@ -3,14 +3,12 @@ import image from '../assets/image.jpg'
 
 const About_innerpage=()=> {
   return (
-    <div  className='w-sfull h-[100%] pt-[11vh] flex flex-col justify-between'>
+    <div  className='w-full h-[100%] pt-[11vh] flex flex-col justify-between'>
         <div className='grid md:grid-cols-3 max-w-[1240px] m-auto'>
 
         <div className='text-center align-middle py-8'>
-                
-                <img src={image} alt="gif-image" className='w-[600px ] drop-shadow-2xl pt-[50vh] rounded-lg left-10 ' />
-                
 
+                <img src={image} alt="gif-image" className='w-[600px ] drop-shadow-2xl pt-[50vh] rounded-lg left-10 ' />
 
             </div>
 
