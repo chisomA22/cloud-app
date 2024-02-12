@@ -23,7 +23,7 @@ const App = () =>{
 
 
   useEffect(()=>{
-    auth.onAuthStateChanged(()=>{
+    auth.onAuthStateChanged((authUser)=>{
       if (authUser){
         setUser(authUser);
       }else{
@@ -35,6 +35,7 @@ const App = () =>{
 
   return (
        <Router>
+        <ToastContainer/>
           <Navbar/>
           <Routes>
             <Route path='/' element={<Home/>}/>
@@ -42,7 +43,7 @@ const App = () =>{
             <Route path='/support' element={<Support/>}/>
             <Route path='/platform' element={<Platform/>}/>
             <Route path='/contact' element={<Contact/>}/>
-            <Route path='/login' element={<Login/>}/>
+            <Route path='/login' element={<Login  setisAuth={setisAuth} setUser={setUser}/>}/>
             <Route path='/register' element={<Register setisAuth={setisAuth} />}/>
           </Routes>
           <Footer/>

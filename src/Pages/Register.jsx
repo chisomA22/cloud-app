@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import React from 'react'
 import { FcGoogle } from "react-icons/fc";
-import { Link,useNavigate } from 'react-router-dom';
+import { Link,Navigate,useNavigate } from 'react-router-dom';
 import { auth,provider } from '../Firebase/Firebaseconfig';
 import { signInWithPopup } from 'firebase/auth';
 import { toast } from 'react-toastify'
@@ -18,7 +18,7 @@ const initialState ={
 }
 
 
-const Register=({setiAuth})=> {
+const Register=({setisAuth})=> {
 
     const [formValue,setFormValue] = useState(initialState);
     const {name,email,password,password2} = formValue;
@@ -39,6 +39,37 @@ const Register=({setiAuth})=> {
       setpasswordEye(!PasswordEye)
   }
 
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    if (name === ''|| email === '' || password=== ''|| password2 === '') {
+        return toast.error('please fill all the input field')
+    };
+    
+    if (name === ''|| email === '' || password=== ''|| password2 === '') {
+        return toast.error('please fill all the input field')
+    }else if (password !== password2){
+        return toast.error('password do not match')
+    }else if (password.length<=6){
+      return toast.error('password is not strong')
+    }else
+    try{
+        if (name && email && password){
+            const{user} = await createUserWithEmailAndPassword(
+                auth,email,password
+            );
+            await updateProfile(user,{displayName:`${name}`})
+            toast.success('signup successfully');
+            localStorage.setItem('IsAuthorised',true);
+            setisAuth(true);
+            Navigate('/login')
+
+        }
+    }catch(error){
+        toast.error('user already exit')
+        //console.error(error)
+    }
+  }
+
 
   return (
     <div>
@@ -46,7 +77,7 @@ const Register=({setiAuth})=> {
         <div className=' max-w-[800px] m-auto px-4 py-16 drop-shadow-lg'>
             <div className='dark:bg-[#e8edea] px-10 py-8 rounded-lg text-black'>
                 <h1 className='text-2xl font-bold text-gray-800'>Signin Page</h1>
-              <form>
+              <form onSubmit={handleSubmit}>
               <div className='grid md:grid-cols-2 md:gap-8'>
                         <div className='md:my-4'>
                             <label>Username</label>
