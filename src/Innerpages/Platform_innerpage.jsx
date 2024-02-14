@@ -9,8 +9,58 @@ import { CgProfile } from 'react-icons/cg'
 import { BsPhone } from 'react-icons/bs'
 import { FaCity } from "react-icons/fa";
 
+const categoryOption = [
+  "Male",
+  "Female",
+  "Custom"
+];
+
+const stateOption = [
+  'Abia state', 'Adamawa state', 'Akwa-Ibom state', 'Anambra state', 'Bauchi state', 'Bayelsa state', 'Benue state', 'Borno state',
+  'Cross River state', 'Delta state', 'Ebonyi state', 'Edo sate', 'Ekiti state', 'Enugu state', 'Gombe state', 'Imo state', 'Jigawa state',
+  'Kaduna state','Kano state','Katsina state','Kebbi state','Kogi state','Kwara state','Lagos state','Nasarawa state','Niger state',
+  'Ogun state','Ondo state','Osun state','Oyo state','Plateau state','Rivers state','Sokoto state','Taraba state','Yobe state',
+  'Zamfara state','Federal Capital Territory(FCT)'
+
+]
+
+const initialState = {
+  First_name: '',
+  Last_name: '',
+  Permanent_address: '',
+  LGA: '',
+  Date_of_Birth: '',
+  Contact: '',
+  State_of_origin: '',
+  Gender: '',
+  City: ''
+};
+
+
+
 
 const  Platform_innerpage=()=> {
+
+  const [formValue, setFormValue] = useState(initialState)
+
+const {First_name, Last_name,Permanent_address,LGA,Date_of_Birth,Contact,State_of_origin,Gender,City} = formValue;
+
+// targetting the input fields
+const onInputChange = (e)=>{
+  setFormValue({...formValue, [e.target.name]: e.target.Value });
+};
+
+// targetting the category input
+const onCategoryChange_three = (e) => {
+  setFormValue({...formValue, State_of_origin: e.target.value });
+};
+
+// targetting the category input
+const onCategoryChange_two = (e) => {
+  setFormValue({ ...formValue, Gender: e.target.value});
+};
+
+
   return (
     <div className='w-full h-[100%] pt-[13vh] justify-between' >
       <div className='max-w-[800px] m-auto px-4 py-16'>
@@ -26,7 +76,9 @@ const  Platform_innerpage=()=> {
                             <input className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                              type="text"
                              placeholder='first name'
-                             name='first name'/>
+                             name='First_name'
+                             value={First_name}
+                             onChange={onInputChange}/>
                              <CgProfile className='absolute right-2 top-3 text-gray-400'/>
                         </div>
                     </div>
@@ -37,7 +89,9 @@ const  Platform_innerpage=()=> {
                             <input className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                             type="text" 
                             placeholder='last name'
-                            name='last_name'/>
+                            name='Last_name'
+                            value={Last_name}
+                            onChange={onInputChange}/>
                             <CgProfile className='absolute right-2 top-3 text-gray-400'/>
                         </div>
                     </div>
@@ -51,7 +105,9 @@ const  Platform_innerpage=()=> {
                          <input className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                          type="text"
                          placeholder='Rumola street'
-                         name='Permanent_address'/>
+                         name='Permanent_address'
+                         value={Permanent_address}
+                         onChange={onInputChange}/>
                          <FaRegAddressCard className='absolute right-2 top-3 text-gray-400'/>
                         </div>
                     </div>
@@ -62,7 +118,9 @@ const  Platform_innerpage=()=> {
                           <input className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                           type="text" 
                           placeholder='L.G.A'
-                          name='LGA'/>
+                          name='LGA'
+                          value={LGA}
+                          onChange={onInputChange}/>
                          <GrLocation className='absolute right-2 top-3 text-gray-400'/>
                         </div>
                     </div>
@@ -76,7 +134,37 @@ const  Platform_innerpage=()=> {
                            <input className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                            type="date"
                            placeholder='dd/mm/yyyy'
-                           name='Date_of_Birth'/>
+                           name='Date_of_Birth'
+                           value={Date_of_Birth}
+                           onChange={onInputChange}/>
+                        </div>
+                    </div>
+
+                    <div className='md:my-4'>
+                      <label>Contact</label>
+                        <div className='my-2 w-full relative'>
+                           <input className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
+                           type="text" 
+                           placeholder='080**'
+                           name='Contact'
+                           value={Contact}
+                           onChange={onInputChange}/>
+                           <BsPhone className='absolute right-2 top-3 text-gray-400'/>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='grid md:grid-cols-2 md:gap-8'>
+
+                    <div className='md:my-4'>
+                     <label>State Of Origin</label>
+                        <div className='my-2 w-full relative'>
+                           <select value={State_of_origin} onChange={onCategoryChange_three}>
+                            <option>Select an option</option>
+                              {stateOption.map((option, index) => (
+                                <option value={option || ""} key={index}>{option}</option>
+                              ))}
+                           </select>
                         </div>
                     </div>
 
@@ -86,11 +174,28 @@ const  Platform_innerpage=()=> {
                            <input className='w-full p-2 border border-gray-400 bg-transparent rounded-lg'
                            type="text" 
                            placeholder='City'
-                           name='city'/>
+                           name='City'
+                           value={City}
+                           onChange={onInputChange}/>
                            <FaCity className='absolute right-2 top-3 text-gray-400'/>
                         </div>
                     </div>
                 </div>
+
+                <div className='grid md:grid-cols-1 md:gap-8'>
+
+                    <div className='md:my-4'>
+                     <label>Gender</label>
+                        <div className='my-2 w-full relative'>
+                           <select value={Gender} onChange={onCategoryChange_two}>
+                            <option>Select an option</option>
+                              {categoryOption.map((option, index) => (
+                                <option value={option || ""} key={index}>{option}</option>
+                              ))}
+                           </select>
+                        </div>
+                    </div>
+                </div>    
 
 
 
