@@ -1,8 +1,9 @@
+import React from 'react'
 import { useState, useEffect} from 'react'
 import { toast } from 'react-toastify'
 import { auth, db } from '../Firebase/Firebaseconfig'
-import { addDoc,collection,getDoc,serverTimestamp, doc, updateDoc } from 'firebase/firestore'
-import { useNavigate,useParams } from 'react-router-dom'
+import { addDoc, collection, getDoc, serverTimestamp, doc, updateDoc } from 'firebase/firestore'
+import { Navigate, useNavigate,useParams } from 'react-router-dom'
 import { FaBaby, FaRegAddressCard } from  'react-icons/fa'
 import { GrLocation } from 'react-icons/gr'
 import { CgProfile } from 'react-icons/cg'
@@ -41,13 +42,16 @@ const initialState = {
 
 const  Platform_innerpage=()=> {
 
+  const Navigate = useNavigate();
+
   const [formValue, setFormValue] = useState(initialState)
 
-const {First_name, Last_name,Permanent_address,LGA,Date_of_Birth,Contact,State_of_origin,Gender,City} = formValue;
+const {First_name, Last_name, Permanent_address, LGA, Date_of_Birth,Contact,State_of_origin,Gender,City
+} = formValue;
 
 // targetting the input fields
 const onInputChange = (e)=>{
-  setFormValue({...formValue, [e.target.name]: e.target.Value });
+  setFormValue({...formValue, [e.target.name]: e.target.value });
 };
 
 // targetting the category input
@@ -60,6 +64,36 @@ const onCategoryChange_two = (e) => {
   setFormValue({ ...formValue, Gender: e.target.value});
 };
 
+const handleSubmit =async(e)=> {
+  e.preventDefault();
+
+  if (First_name=== '' || Last_name === '' || Permanent_address === '' || LGA === '' || Date_of_Birth === '' || Contact === '' || 
+  Gender === '' || State_of_origin === '' || City === '') 
+  {
+    toast.error('please fill in the input field')
+  } else {
+    try {
+      await addDoc(collection(db, "BirthName"), {
+        User : {
+          name: auth.currentUser.displayName,
+          email: auth.currentUser.email,
+          id: auth.currentUser.uid
+        },
+        ...formValue,
+        timestamp: serverTimestamp()
+      })
+      Navigate('/')
+      toast.success('submitted successfully')
+    } 
+    catch (error) {
+      console.log (error.message)
+
+    }
+
+  }
+
+}
+
 
   return (
     <div className='w-full h-[100%] pt-[13vh] justify-between' >
@@ -67,7 +101,7 @@ const onCategoryChange_two = (e) => {
         <div className='dark:bg-[#e8edea] px-10 py-8 rounded-lg text-black'>
 
             <h1 className='text-2xl font-bold text-gray-800 mb-4'>Cloud Registration</h1>
-            <form >
+            <form onSubmit={handleSubmit}>
                 <div className='grid md:grid-cols-2 md:gap-8'>
 
                     <div className='md:my-4'>
@@ -198,7 +232,7 @@ const onCategoryChange_two = (e) => {
                 </div>    
 
 
-
+              <button type='submit' className='w-full my-4 md:my-2 p-3 bg-[#02020F] text-white rounded-lg font-semibold'>Submit</button>
             </form>
 
         </div>

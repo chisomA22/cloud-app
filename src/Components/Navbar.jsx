@@ -32,6 +32,7 @@ const  Navbar = ()=> {
           <Link to={'/support'}><li>Support</li></Link> 
           <Link to={'/platform'}><li>Platform</li></Link> 
           <Link to={'/contact'}><li>Contact</li></Link>
+          <Link to={'/dashboard'}><li>Dashboard</li></Link>
           </ul>
         </div>
         <div className='hidden md:flex pr-4'>
@@ -48,6 +49,7 @@ const  Navbar = ()=> {
       <Link to={'/support'}><li className='border-b-2 py-3 border-black-300 w-full'>Support</li></Link> 
       <Link to={'/platform'}><li className='border-b-2 py-3 border-black-300 w-full'>Platform</li></Link>
       <Link to={'/contact'}><li className='border-b-2 py-3 border-black-300 w-full'>Contact </li></Link>
+      <Link to={'/dashboard'}><li className='border-b-2 py-3 border-black-300 w-full'>Dashboard</li></Link>
 
         <div className='flex flex-col my-4'>
         <button className='border-none bg-[#201f1f] text-[#eedfdf] px-8 py-3 mb-4 rounded-2xl'>Login</button>

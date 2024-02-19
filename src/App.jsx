@@ -10,6 +10,7 @@ import Platform from './Pages/Platform'
 import Contact from './Pages/Contact'
 import Register from './Pages/Register'
 import Support from './Pages/Support'
+import Dashboard from './Pages/Dashboard'
 import Footer from './Components/Footer'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 
@@ -43,6 +44,7 @@ const App = () =>{
             <Route path='/support' element={<Support/>}/>
             <Route path='/platform' element={<Platform/>}/>
             <Route path='/contact' element={<Contact/>}/>
+            <Route path='/dashboard' element={<Dashboard/>}/>
             <Route path='/login' element={<Login  setisAuth={setisAuth} setUser={setUser}/>}/>
             <Route path='/register' element={<Register setisAuth={setisAuth} />}/>
           </Routes>
