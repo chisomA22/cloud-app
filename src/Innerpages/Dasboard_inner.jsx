@@ -76,7 +76,7 @@ const Dasboard_inner =( {isAuth}) => {
                         <h1><span className='font-bold text-black'>City</span>{item?.city || <skeleton/>}</h1>
 
                         <div className='mt-4'>
-                            <Link to={`/birth_detail/#{item.id}`}><button className='mr-4 pr-2 bg-slate-900 text-center p-1 rounded-lg shadow-2xl text-white'>Read more</button></Link>
+                            <Link to={`/birth_detail/${item.id}`}><button className='mr-4 pr-2 bg-slate-900 text-center p-1 rounded-lg shadow-2xl text-white'>Read more</button></Link>
                             <Link to={`/bith_update/${item.id}`}><button className='mr-4 pr-2 bg-slate-900 text-center p-1 rounded-lg shadow-2xl text-white'> update</button></Link>
                             {
                                 isAuth && item.User.id === auth.currentUser.uid && (

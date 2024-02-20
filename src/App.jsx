@@ -12,6 +12,7 @@ import Register from './Pages/Register'
 import Support from './Pages/Support'
 import Dashboard from './Pages/Dashboard'
 import Footer from './Components/Footer'
+import Birth_details from './Pages/Birth_details'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 
 import "react-toastify/dist/ReactToastify.css"
@@ -45,6 +46,7 @@ const App = () =>{
             <Route path='/platform' element={<Platform/>}/>
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/dashboard' element={<Dashboard/>}/>
+            <Route path='/birth_detail/:id' element={<Birth_details isAuth={isAuth} />} />
             <Route path='/login' element={<Login  setisAuth={setisAuth} setUser={setUser}/>}/>
             <Route path='/register' element={<Register setisAuth={setisAuth} />}/>
           </Routes>
