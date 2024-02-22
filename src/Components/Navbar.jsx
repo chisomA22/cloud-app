@@ -52,8 +52,8 @@ const  Navbar = ()=> {
       <Link to={'/dashboard'}><li className='border-b-2 py-3 border-black-300 w-full'>Dashboard</li></Link>
 
         <div className='flex flex-col my-4'>
-        <button className='border-none bg-[#201f1f] text-[#eedfdf] px-8 py-3 mb-4 rounded-2xl'>Login</button>
-        <button className='border-none bg-[#201f1f] text-[#eedfdf] px-8 py-3 mb-4 rounded-2xl'>Register</button>
+      <Link to={'/login'}><button className='border-none bg-[#201f1f] text-[#eedfdf] px-8 py-3 mb-4 rounded-2xl'>Login</button></Link>
+       <Link to={'register'}><button className='border-none bg-[#201f1f] text-[#eedfdf] px-8 py-3 mb-4 rounded-2xl'>Register</button></Link>
 
         </div>
 
